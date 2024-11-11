@@ -116,6 +116,7 @@ class LivecodingApplicationTests {
     }
 
     /**
+     * Задача №1 из hh.ru
      * ввод: круг 3 Вывод: 28.27 18.85 (площадь, периметр)
      * ввод: квадрат 3 Вывод: 9.00 12.00 (площадь, периметр)
      * */
@@ -144,7 +145,6 @@ class LivecodingApplicationTests {
             System.out.print(String.format("%.0f ", result[i]));
             i++;
         }
-
     }
 }
 
