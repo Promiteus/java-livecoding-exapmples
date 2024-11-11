@@ -5,7 +5,8 @@
    Например 1, 2, 3, 4, 4, 5, 6, 7, 7, 7, 4 — 2 штуки, 7 — 3 штуки.
    Решение:
    
-   ```@Test
+   ```
+    @Test
     void test2() {
         int[] arr = new int[]{1, 2, 3, 4, 4, 5, 6, 7, 7, 7, 4};
         Map<Integer, List<Integer>> sub = new HashMap<>();
@@ -33,8 +34,8 @@
    ```
  2. Есть строка «Привет, Кккккатовццццы!», надо избавиться от дубликатов и вывести «Привет, Катовцы!».
     Решение:
-
-   ``` @Test
+   ```
+    @Test
     void test3() {
         String test = "Привет, Кккккатовццццы!";
         List<String> elements = new ArrayList<>();
@@ -97,7 +98,8 @@
    отсортированный по возрастанию.  
    Ввод: [-7,-3,2,3,11]  
    Вывод: [4,9,9,49,121]  
-   ``` @Test
+   ``` 
+    @Test
     void test5() {
         double[] arr = new double[]{-7,-3,2,3,11};
         double[] result = Arrays.stream(arr).map(elem -> Math.pow(elem, 2)).sorted().toArray();
@@ -117,7 +119,8 @@
    Ввод: [-2,1,-3,4,-1,2,1,-5,4]  
    Подмассив [4,-1,2,1] имеет наибольшую сумму 6.  
    Вывод: 6  
-   ```@Test
+   ```
+    @Test
     public void test6() {
         Integer[] arr = new Integer[]{-2,1,-3,4,-1,2,1,-5,4};
 
