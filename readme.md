@@ -92,4 +92,59 @@
         System.out.println(calculate("круг 3"));
         System.out.println(calculate("квадрат 3"));
     }
- ```
+   ```  
+4. Дан массив целых чисел, отсортированный по возрастанию, верните массив квадратов каждого числа,
+   отсортированный по возрастанию.  
+   Ввод: [-7,-3,2,3,11]  
+   Вывод: [4,9,9,49,121]  
+   ``` @Test
+    void test5() {
+        double[] arr = new double[]{-7,-3,2,3,11};
+        double[] result = Arrays.stream(arr).map(elem -> Math.pow(elem, 2)).sorted().toArray();
+
+        System.out.println("Исходные данные: [-7,-3,2,3,11] ");
+
+        var i = 0;
+        System.out.print("Результат: ");
+        while (i < result.length) {
+            System.out.print(String.format("%.0f ", result[i]));
+            i++;
+        }
+    }
+   ```  
+5. Из массива целых чисел, надо найти подмассив с наибольшей суммой и вернуть её сумму.
+   Например:   
+   Ввод: [-2,1,-3,4,-1,2,1,-5,4]  
+   Подмассив [4,-1,2,1] имеет наибольшую сумму 6.  
+   Вывод: 6  
+   ```@Test
+    public void test6() {
+        Integer[] arr = new Integer[]{-2,1,-3,4,-1,2,1,-5,4};
+
+        Map<Integer, List<Integer>> windows = new HashMap<>();
+        var numElements = 4;
+        var iter = 1;
+        var numIterations = (arr.length - numElements)+1;
+        List<Integer> buff = Arrays.asList(arr);
+        while (iter <= numIterations) {
+            var list = new ArrayList<Integer>();
+            for (var i = 0; i < numElements; i++) {
+                list.add(buff.get((iter-1)+i));
+            }
+            windows.put(iter, list);
+            iter++;
+        }
+        //Показать подмассивы по индексам
+        windows.forEach((integer, integers) -> System.out.println(String.format("%d, %s", integer, integers.toString())));
+        //Подсчитать суммы элементов подмассивов
+        var results = windows.values().stream().map(integers -> integers.stream().mapToInt(integer -> integer.intValue()).sum()).toArray();
+        //Показать результаты
+        System.out.println("=========");
+        AtomicInteger n = new AtomicInteger();
+        Arrays.stream(results).forEach(o -> {
+            System.out.println(String.format("%s %s", o.toString(), windows.get(n.get()+1)));
+            n.getAndIncrement();
+        });
+    }
+   ```
+   
