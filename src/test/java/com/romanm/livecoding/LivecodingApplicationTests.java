@@ -74,6 +74,7 @@ class LivecodingApplicationTests {
         List<String> elements = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         AtomicInteger index = new AtomicInteger();
+
         Arrays.stream(test.split("")).forEach(s -> {
            elements.add(s.toLowerCase());
            if (elements.size() > 0) {
@@ -82,9 +83,11 @@ class LivecodingApplicationTests {
                   sb.append(s);
               }
            }
-            index.getAndIncrement();
+           index.getAndIncrement();
         });
-        System.out.println("Str: "+sb.toString());
+
+        System.out.println("Исходная строка: "+test);
+        System.out.println("Результат: "+sb.toString());
     }
 }
 
