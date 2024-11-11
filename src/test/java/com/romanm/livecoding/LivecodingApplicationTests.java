@@ -89,5 +89,40 @@ class LivecodingApplicationTests {
         System.out.println("Исходная строка: "+test);
         System.out.println("Результат: "+sb.toString());
     }
+
+
+    private String calculate(String input) {
+        if (input == "") {
+            return "0.00 0.00";
+        }
+
+        String[] data = input.split("\\s");
+        String shape = data[0];
+        String value = data.length > 1 ? data[1] : "1";
+
+        if (shape.equalsIgnoreCase("круг")) {
+            double s = Math.PI*Math.pow(Double.parseDouble(value), 2);
+            double p = Math.PI*2*Double.parseDouble(value);
+            return String.format("%.2f %.2f", s, p);
+        }
+
+        if (shape.equalsIgnoreCase("квадрат")) {
+            double s = Math.pow(Double.parseDouble(value), 2);
+            double p = 4*Double.parseDouble(value);
+            return String.format("%.2f %.2f", s, p);
+        }
+
+        return "0.00 0.00";
+    }
+
+    /**
+     * ввод: круг 3 Вывод: 28.27 18.85 (площадь, периметр)
+     * ввод: квадрат 3 Вывод: 9.00 12.00 (площадь, периметр)
+     * */
+    @Test
+    void test4() {
+        System.out.println(calculate("круг 3"));
+        System.out.println(calculate("квадрат 3"));
+    }
 }
 
