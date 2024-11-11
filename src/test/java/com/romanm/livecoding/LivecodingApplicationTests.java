@@ -64,5 +64,27 @@ class LivecodingApplicationTests {
             }
         });
     }
+
+    /**
+     * Есть строка «Привет, Кккккатовццццы!», надо избавиться от дубликатов и вывести «Привет, Катовцы!».
+     * */
+    @Test
+    void test3() {
+        String test = "Привет, Кккккатовццццы!";
+        List<String> elements = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        AtomicInteger index = new AtomicInteger();
+        Arrays.stream(test.split("")).forEach(s -> {
+           elements.add(s.toLowerCase());
+           if (elements.size() > 0) {
+              String prev = (index.get() - 1) >= 1 ? elements.get(index.get() - 1) : "";
+              if (!prev.equals(s)) {
+                  sb.append(s);
+              }
+           }
+            index.getAndIncrement();
+        });
+        System.out.println("Str: "+sb.toString());
+    }
 }
 
