@@ -124,5 +124,27 @@ class LivecodingApplicationTests {
         System.out.println(calculate("круг 3"));
         System.out.println(calculate("квадрат 3"));
     }
+
+    /**
+     * Дан массив целых чисел, отсортированный по возрастанию, верните массив квадратов каждого числа,
+     * отсортированный по возрастанию.
+     * Ввод: [-7,-3,2,3,11]
+     * Вывод: [4,9,9,49,121]
+     * */
+    @Test
+    void test5() {
+        double[] arr = new double[]{-7,-3,2,3,11};
+        double[] result = Arrays.stream(arr).map(elem -> Math.pow(elem, 2)).sorted().toArray();
+
+        System.out.println("Исходные данные: [-7,-3,2,3,11] ");
+
+        var i = 0;
+        System.out.print("Результат: ");
+        while (i < result.length) {
+            System.out.print(String.format("%.0f ", result[i]));
+            i++;
+        }
+
+    }
 }
 
