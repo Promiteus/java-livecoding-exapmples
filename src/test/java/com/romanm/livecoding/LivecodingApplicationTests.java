@@ -235,10 +235,19 @@ class LivecodingApplicationTests {
     @Test
     public void test10() {
         String task = "Задача";
+        /**Вариант 1*/
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(task);
         var result = stringBuilder.reverse();
         System.out.println("Ответ: "+result);
+
+        /**Вариант 2*/
+        String[] chrs = task.split("");
+        String buff = "";
+        for (var i = chrs.length; i != 0; i--) {
+            buff+=chrs[i-1];
+        }
+        System.out.println("Ответ: "+buff);
     }
 }
 
