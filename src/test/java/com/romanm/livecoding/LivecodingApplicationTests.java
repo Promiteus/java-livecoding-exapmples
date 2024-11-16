@@ -228,5 +228,17 @@ class LivecodingApplicationTests {
     }
 
 
+    /**
+     *  Напишите программу на Java для переворачивания строки, изменив расположение символов в
+     *  строке задом наперёд без использования встроенных в String функций.
+     * */
+    @Test
+    public void test10() {
+        String task = "Задача";
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(task);
+        var result = stringBuilder.reverse();
+        System.out.println("Ответ: "+result);
+    }
 }
 
