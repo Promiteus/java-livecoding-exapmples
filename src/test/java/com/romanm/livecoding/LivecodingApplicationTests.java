@@ -183,5 +183,22 @@ class LivecodingApplicationTests {
             n.getAndIncrement();
         });
     }
+
+    private static void inc(Integer i) {
+        i++;
+    }
+
+    /**
+     *  Что выведет данный тест? Ответ: 1
+     *  Видимо на ссылочные классы обертки простых типов законы ссылочных типов объектов не работают
+     * */
+    @Test
+    public void test7() {
+        Integer i = Integer.valueOf(1);
+        inc(i);
+        System.out.println(i);
+    }
+
+    
 }
 
