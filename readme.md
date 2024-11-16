@@ -149,5 +149,46 @@
             n.getAndIncrement();
         });
     }
+   ```  
+   
+6. Что выведет данный тест? Ответ: 1.  
+   Видимо на ссылочные классы обертки простых типов законы ссылочных типов объектов не работают.
+   ```
+    private static void inc(Integer i) {
+        i++;
+        System.out.println("inc(): "+i); // 2
+    }
+
+    @Test
+    public void test7() {
+        Integer i = Integer.valueOf(1);
+        inc(i);
+        System.out.println("Ответ: "+i); // 1
+    }
+   ```  
+   
+7. Что выведет данный тест? Ответ: 1. Со строками, видимо, то же самое!  
+   ```
+    private static void inc_(String s) {
+        s = s + "2";
+        System.out.println("inc_(): "+s); // 12
+    }
+
+    @Test
+    public void test8() {
+        String i = "1";
+        inc_(i);
+        System.out.println("Ответ: "+i); // 1
+    }
+   ```  
+   
+8. Что выведет данный тест? Ответ: false. Разные объекты (ссылки)  
+   ```
+   @Test
+   public void test9() {
+        Integer i1 = Integer.valueOf(717);
+        Integer i2 = Integer.valueOf(717);
+        System.out.println(i1 == i2); //false
+   }
    ```
    
