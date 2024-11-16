@@ -186,6 +186,7 @@ class LivecodingApplicationTests {
 
     private static void inc(Integer i) {
         i++;
+        System.out.println("inc(): "+i);
     }
 
     /**
@@ -196,9 +197,36 @@ class LivecodingApplicationTests {
     public void test7() {
         Integer i = Integer.valueOf(1);
         inc(i);
-        System.out.println(i);
+        System.out.println("Ответ: "+i);
     }
 
-    
+    private static void inc_(String s) {
+        s = s + "2";
+        System.out.println("inc_(): "+s);
+    }
+
+    /**
+     * Что выведет данный тест? Ответ: 1
+     * Со строками, видимо, то же самое!
+     * */
+    @Test
+    public void test8() {
+        String i = "1";
+        inc_(i);
+        System.out.println("Ответ: "+i);
+    }
+
+    /**
+     * Что выведет данный тест? Ответ: false
+     * Разные объекты (ссылки)
+     * */
+    @Test
+    public void test9() {
+        Integer i1 = Integer.valueOf(717);
+        Integer i2 = Integer.valueOf(717);
+        System.out.println(i1 == i2);
+    }
+
+
 }
 

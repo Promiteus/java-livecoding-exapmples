@@ -137,12 +137,12 @@
             windows.put(iter, list);
             iter++;
         }
-        //Показать подмассивы по индексам
+     
         windows.forEach((integer, integers) -> System.out.println(String.format("%d, %s", integer, integers.toString())));
-        //Подсчитать суммы элементов подмассивов
+
         var results = windows.values().stream().map(integers -> integers.stream().mapToInt(integer -> integer.intValue()).sum()).toArray();
-        //Показать результаты
-        System.out.println("=========");
+       
+      
         AtomicInteger n = new AtomicInteger();
         Arrays.stream(results).forEach(o -> {
             System.out.println(String.format("%s %s", o.toString(), windows.get(n.get()+1)));
