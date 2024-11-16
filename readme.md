@@ -1,4 +1,4 @@
-### Примеры задач по Java на лайвкодинг.
+### Примеры задач по Java на лайвкодинг (класс LivecodingApplicationTests).
 
 1. Задан массив целых чисел от 1 до 100. В этом массиве есть
    дубликаты. Задача: найти все дубликаты и указать их количество.
@@ -190,5 +190,41 @@
         Integer i2 = Integer.valueOf(717);
         System.out.println(i1 == i2); //false
    }
-   ```
+   ```  
+9.  Напишите программу на Java для переворачивания строки, изменив расположение символов в
+    строке задом наперёд без использования встроенных в String функций.  
+    ```
+    @Test
+    public void test10() {
+        String task = "Задача";
+        /**Вариант 1*/
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(task);
+        var result = stringBuilder.reverse();
+        System.out.println("Ответ: "+result); // ачадаЗ
+
+        /**Вариант 2*/
+        String[] chrs = task.split("");
+        String buff = "";
+        for (var i = chrs.length; i != 0; i--) {
+            buff+=chrs[i-1];
+        }
+        System.out.println("Ответ: "+buff); // ачадаЗ
+    }
+    ```  
+10. Напишите программу на Java, чтобы поменять местами значения, хранящиеся
+    в двух переменных, без использования третьей переменной.  
+    ```
+    @Test
+    public void test11() {
+        var a = 10;
+        var b = 20;
+        System.out.println(String.format("Было: a=%d b=%d", a, b)); // Было: a=10 b=20
+
+        a = a + b; //30
+        b = a - b; //10
+        a = a - b; //20
+        System.out.println(String.format("Стало: a=%d b=%d", a, b)); // Стало: a=20 b=10
+    }
+    ```
    

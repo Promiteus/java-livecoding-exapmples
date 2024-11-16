@@ -251,6 +251,7 @@ class LivecodingApplicationTests {
     }
 
     /**
+     * https://itvdn.com/ru/blog/article/test-java-20
      *  Напишите программу на Java, чтобы поменять местами значения, хранящиеся
      *  в двух переменных, без использования третьей переменной.
      * */
