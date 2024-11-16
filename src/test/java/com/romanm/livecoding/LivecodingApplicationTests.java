@@ -249,5 +249,21 @@ class LivecodingApplicationTests {
         }
         System.out.println("Ответ: "+buff);
     }
+
+    /**
+     *  Напишите программу на Java, чтобы поменять местами значения, хранящиеся
+     *  в двух переменных, без использования третьей переменной.
+     * */
+    @Test
+    public void test11() {
+        var a = 10;
+        var b = 20;
+        System.out.println(String.format("Было: a=%d b=%d", a, b));
+
+        a = a + b; //30
+        b = a - b; //10
+        a = a - b; //20
+        System.out.println(String.format("Стало: a=%d b=%d", a, b));
+    }
 }
 
