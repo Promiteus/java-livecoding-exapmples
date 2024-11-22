@@ -292,6 +292,28 @@ class LivecodingApplicationTests {
         });
 
     }
+
+    /**
+     * Тест на натуральное число
+     */
+    @Test
+    public void test13() {
+        int value = 31;
+        boolean natural = true;
+        for (int i = 2; i <= value/2; i++) {
+            System.out.println(String.format("%d", value%i));
+            if (value%i == 0) {
+               natural = false;
+               break;
+            }
+        }
+
+        if (natural) {
+            System.out.println(String.format("%d - натуральное число", value));
+        } else {
+            System.out.println(String.format("%d - не натуральное число", value));
+        }
+    }
 }
 
 
