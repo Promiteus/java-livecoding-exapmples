@@ -314,6 +314,21 @@ class LivecodingApplicationTests {
             System.out.println(String.format("%d - не натуральное число", value));
         }
     }
+
+    /**
+     * Тест на палиндром (строка одинаково читаема с обеих сторон)
+     */
+    @Test
+    public void test14() {
+       String testString = "121";
+       StringBuilder stringBuilder = new StringBuilder();
+       stringBuilder.append(testString);
+       if (stringBuilder.reverse().toString().equals(testString)) {
+           System.out.println(String.format("Строка '%s' является полиндромом", testString));
+       } else {
+           System.out.println(String.format("Строка '%s' не является полиндромом", testString));
+       }
+    }
 }
 
 
