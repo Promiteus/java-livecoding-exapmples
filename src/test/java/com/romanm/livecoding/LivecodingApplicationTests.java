@@ -266,5 +266,34 @@ class LivecodingApplicationTests {
         a = a - b; //20
         System.out.println(String.format("Стало: a=%d b=%d", a, b));
     }
+
+    /**
+     * Напишите программу на Java для подсчета количества конкретных слов в строке, используя HashMap
+     * */
+    @Test
+    public void test12() {
+        String st = "Current task posted for Java developers developers";
+        String[] words = st.split("\\s+");
+        Map<String, List<String>> map = new HashMap<>();
+        for (String word: words) {
+          List<String> mapList = map.get(word);
+          if (mapList != null) {
+              mapList.add(word);
+              map.put(word, mapList);
+          } else {
+              List<String> innerList = new ArrayList<>();
+              innerList.add(word);
+              map.put(word, innerList);
+          }
+        }
+
+        map.entrySet().forEach(es -> {
+            System.out.println(String.format("Слово '%s' -> Количество: %s", es.getKey(), es.getValue().size()));
+        });
+
+    }
 }
+
+
+
 
