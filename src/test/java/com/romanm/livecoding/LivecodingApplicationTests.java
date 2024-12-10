@@ -308,7 +308,6 @@ class LivecodingApplicationTests {
         map.entrySet().forEach(es -> {
             System.out.println(String.format("Слово '%s' -> Количество: %s", es.getKey(), es.getValue().size()));
         });
-
     }
 
     /**

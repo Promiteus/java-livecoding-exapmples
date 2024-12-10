@@ -240,5 +240,72 @@
         a = a - b; //20
         System.out.println(String.format("Стало: a=%d b=%d", a, b)); // Стало: a=20 b=10
     }
+    ```  
+11. Напишите программу на Java для подсчета количества конкретных слов в строке, используя HashMap.
+    ``` 
+     @Test
+     public void test12() {
+        String st = "Current task posted for Java developers developers";
+        String[] words = st.split("\\s+");
+        Map<String, List<String>> map = new HashMap<>();
+        for (String word: words) {
+          List<String> mapList = map.get(word);
+          if (mapList != null) {
+              mapList.add(word);
+              map.put(word, mapList);
+          } else {
+              List<String> innerList = new ArrayList<>();
+              innerList.add(word);
+              map.put(word, innerList);
+          }
+        }
+
+        map.entrySet().forEach(es -> {
+            System.out.println(String.format("Слово '%s' -> Количество: %s", es.getKey(), es.getValue().size()));
+        });        
+    }
+     
+     Ответ:
+     Слово 'Java' -> Количество: 1
+     Слово 'task' -> Количество: 1
+     Слово 'developers' -> Количество: 2
+     Слово 'for' -> Количество: 1
+     Слово 'Current' -> Количество: 1
+     Слово 'posted' -> Количество: 1
+    ```  
+12. Тест на натуральное число  
+    ```
+     @Test
+     public void test13() {
+        int value = 31;
+        boolean natural = true;
+        for (int i = 2; i <= value/2; i++) {
+            System.out.println(String.format("%d", value%i));
+            if (value%i == 0) {
+               natural = false;
+               break;
+            }
+        }
+
+        if (natural) {
+            System.out.println(String.format("%d - натуральное число", value));
+        } else {
+            System.out.println(String.format("%d - не натуральное число", value));
+        }
+    }
+    ```  
+13. Тест на палиндром (строка одинаково читаема с обеих сторон)
+    ```
+      @Test
+       public void test14() {
+       String testString = "121";
+       StringBuilder stringBuilder = new StringBuilder();
+       stringBuilder.append(testString);
+       if (stringBuilder.reverse().toString().equals(testString)) {
+           System.out.println(String.format("Строка '%s' является полиндромом", testString));
+       } else {
+           System.out.println(String.format("Строка '%s' не является полиндромом", testString));
+       }
+    }
     ```
    
