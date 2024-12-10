@@ -3,9 +3,12 @@ package com.romanm.livecoding;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.BeforeEach;
+import reactor.core.publisher.Flux;
+
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 class LivecodingApplicationTests {
@@ -159,30 +162,45 @@ class LivecodingApplicationTests {
         Integer[] arr = new Integer[]{-2,1,-3,4,-1,2,1,-5,4};
 
         Map<Integer, List<Integer>> windows = new HashMap<>();
-        var numElements = 4;
+        var winLen = 4;
         var iter = 1;
-        var numIterations = (arr.length - numElements)+1;
+        var numIterations = (arr.length - winLen)+1;
         List<Integer> buff = Arrays.asList(arr);
         while (iter <= numIterations) {
             var list = new ArrayList<Integer>();
-            for (var i = 0; i < numElements; i++) {
+            for (var i = 0; i < winLen; i++) {
                 list.add(buff.get((iter-1)+i));
             }
             windows.put(iter, list);
             iter++;
         }
-        //Показать подмассивы по индексам
-        windows.forEach((integer, integers) -> System.out.println(String.format("%d, %s", integer, integers.toString())));
-        //Подсчитать суммы элементов подмассивов
-        var results = windows.values().stream().map(integers -> integers.stream().mapToInt(integer -> integer.intValue()).sum()).toArray();
-        //Показать результаты
-        System.out.println("=========");
-        AtomicInteger n = new AtomicInteger();
-        Arrays.stream(results).forEach(o -> {
-            System.out.println(String.format("%s %s", o.toString(), windows.get(n.get()+1)));
-            n.getAndIncrement();
+
+        class Sum {
+            Integer result;
+            Integer index;
+            List<Integer> list;
+
+            public Sum(Integer result, Integer index, List<Integer> list) {
+                this.result = result;
+                this.index = index;
+                this.list = list;
+            }
+        }
+
+        var result = windows.entrySet().stream().map(i -> {
+            var res = i.getValue().stream().reduce((a, b) -> a + b).get();
+            return new Sum(res, i.getKey(), i.getValue());
+        }).collect(Collectors.toList());
+
+        result.forEach(r -> {
+            System.out.println(String.format("Сумма: %d, Индекс %d, Список: %s", r.result, r.index, r.list.toString()));
         });
+
+        var maxSum = result.stream().max(Comparator.comparing((Sum s) -> s.result)).get();
+        System.out.println();
+        System.out.println(String.format("Ответ: %d, %s", maxSum.result, maxSum.list));
     }
+
 
     private static void inc(Integer i) {
         i++;
